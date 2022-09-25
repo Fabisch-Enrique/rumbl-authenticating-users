@@ -46,6 +46,7 @@ defmodule Rumbl.User do
     changeset(%__MODULE__{}, attrs) |> Repo.insert()
   end
 
+
   def update(id, attrs) do
     get(id) |> changeset(attrs) |> Repo.update()
   end
@@ -53,4 +54,5 @@ defmodule Rumbl.User do
   def get(id) do
     Repo.get!(__MODULE__, id)
   end
+
 end
