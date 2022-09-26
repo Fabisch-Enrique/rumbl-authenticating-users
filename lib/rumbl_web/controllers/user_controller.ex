@@ -5,20 +5,17 @@ defmodule RumblWeb.UserController do
 
 
   alias Rumbl.User
-  
+
 
   def index(conn, _params) do
 
     case authenticate(conn) do
       %Plug.Conn{halted: true} = conn ->
-        IO.inspect("gyguyguy")
         conn
       conn ->
         users = User.list()
         render conn, "index.html", users: users
     end
-
-
 
   end
 
