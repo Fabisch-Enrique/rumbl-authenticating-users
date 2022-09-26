@@ -3,6 +3,6 @@
 <%= @user.first_name %>
 <%= @user.second_name %>
 
-
+<%= link("Delete", to: Routes.user_path(@conn, :delete, @user), method: :delete)%>
 
 

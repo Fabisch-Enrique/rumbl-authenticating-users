@@ -19,7 +19,10 @@ defmodule RumblWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources "/users", UserController, only: [:index, :show, :new, :edit, :create, :delete]
+    get "/signup", SessionController, :rregister
+    post "/signup", SessionController, :register
+    resources "/users", UserController, only: [:index, :show, :new, :create, :delete]
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.

@@ -10,21 +10,20 @@
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
   <body>
-    <header>
-      <section class="container">
-        <nav>
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
-        </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src={Routes.static_path(@conn, "/images/phoenix.png")} alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
-    </header>
+    <div class="header">
+      <ol class="breadcrumb text-right">
+        <%= if @current_user do %>
+        <li><%= @current_user.first_name %></li>
+        <li>
+          <%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete" %>
+        </li>
+        <% else %>
+        <li><%= link "Register", to: Routes.session_path(@conn, :rregister) %></li>
+        <li><%= link "Log in", to: Routes.session_path(@conn, :new) %></li>
+        <% end %>
+      </ol>
+      <span class="logo"></span>
+    </div>
     <%= @inner_content %>
   </body>
 </html>

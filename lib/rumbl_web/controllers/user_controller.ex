@@ -31,18 +31,20 @@ defmodule RumblWeb.UserController do
   end
 
 
+
   def create(conn, %{"user" => user_params}) do
     case User.create(user_params) do
       {:ok, user} ->
         conn
-          |> put_flash(:info, "#{user.first_name} created!")
-          |> redirect(to: Routes.user_path(conn, :index))
+        |> put_flash(:info, "#{user.first_name} created!")
+        |> redirect(to: Routes.user_path(conn, :index))
 
       {:error, changeset} ->
         render(conn, "form.html", changeset: changeset)
 
     end
   end
+
 
   def update(conn, %{"id" => user_id, "user" => user}) do
 
@@ -55,6 +57,12 @@ defmodule RumblWeb.UserController do
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "form.html", changeset: changeset)
     end
+  end
+
+  def delete(conn, %{"id" => user_id}) do
+    {:ok, _} = User.delete(user_id)
+    conn
+    |> redirect(to: Routes.user_path(conn, :index))
   end
 
 #plugs

@@ -27,16 +27,27 @@ defmodule Rumbl.User do
 
   end
 
-  defp put_pass_hash(changeset) do
-
-    case changeset do
-      %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
-        put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(pass))
-          _ ->
-            changeset
+ def registration_changeset(user, params) do
+        user
+        |> changeset(params)
+        |> cast(params, [:password])
+        |> validate_length(:password, min: 8, max: 100)
+        |> put_pass_hash()
     end
-  end
 
+    defp put_pass_hash(changeset) do
+        case changeset do
+            %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
+                put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(pass))
+            _ ->
+                changeset
+        end
+    end
+
+    def register(attrs) do
+              __MODULE__.registration_changeset(%__MODULE__{}, attrs)
+              |> Repo.insert()
+    end
 
   def list do
     Repo.all(__MODULE__)
@@ -53,6 +64,10 @@ defmodule Rumbl.User do
 
   def get(id) do
     Repo.get!(__MODULE__, id)
+  end
+
+  def delete(id) do
+    get(id) |> Repo.delete()
   end
 
 end
