@@ -14,9 +14,7 @@ defmodule RumblWeb.UserController do
         users = User.list()
         render conn, "index.html", users: users
     end
-
   end
-
 
   def show(conn, %{"id" => user_id}) do
     user = User.get(user_id)
@@ -42,7 +40,6 @@ defmodule RumblWeb.UserController do
 
     end
   end
-
 
   def update(conn, %{"id" => user_id, "user" => user}) do
 
@@ -74,5 +71,4 @@ defmodule RumblWeb.UserController do
       |> halt()
     end
   end
-
 end

@@ -11,8 +11,8 @@ defmodule RumblWeb.SessionController do
       render(conn, "new.html")
 
     end
-
   end
+  
   def create(conn, %{"session" => %{"email" => email, "password" => pswd}}) do
 
     case RumblWeb.Auth.login_by_email_and_pswd(conn, email, pswd, repo: Rumbl.Repo) do
@@ -27,6 +27,7 @@ defmodule RumblWeb.SessionController do
         |> render("new.html")
     end
   end
+
    def rregister(conn, _params) do
     changeset = User.changeset(%Rumbl.User{}, %{})
     render(conn, "register.html", changeset: changeset)
@@ -51,5 +52,4 @@ defmodule RumblWeb.SessionController do
     |> RumblWeb.Auth.logout()
     |> redirect(to: Routes.page_path(conn, :index))
   end
-
 end
