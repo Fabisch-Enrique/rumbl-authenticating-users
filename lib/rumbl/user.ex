@@ -44,10 +44,10 @@ defmodule Rumbl.User do
         end
     end
 
-    def register(attrs) do
-              __MODULE__.registration_changeset(%__MODULE__{}, attrs)
-              |> Repo.insert()
-    end
+  def register(attrs) do
+    __MODULE__.registration_changeset(%__MODULE__{}, attrs)
+      |> Repo.insert()
+  end
 
   def list do
     Repo.all(__MODULE__)
