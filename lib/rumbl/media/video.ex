@@ -6,8 +6,7 @@ defmodule Rumbl.Media.Video do
     field :description, :string
     field :title, :string
     field :url, :string
-    field :user_id, :id
-
+    belongs_to :user, Rumbl.User
     timestamps()
   end
 
