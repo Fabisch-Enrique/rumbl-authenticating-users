@@ -28,7 +28,6 @@ defmodule RumblWeb.VideoController do
       user
       |> Ecto.build_assoc(:videos)
       |> Video.changeset(%{})
-      |> IO.inspect()
     render(conn, "new.html", changeset: changeset)
   end
 
