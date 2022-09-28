@@ -1,7 +1,6 @@
 <h1>Show Video</h1>
 
 <ul>
-
   <li>
     <strong>Url:</strong>
     <%= @video.url %>
@@ -16,7 +15,6 @@
     <strong>Description:</strong>
     <%= @video.description %>
   </li>
-
 </ul>
 
 <span><%= link "Edit", to: Routes.video_path(@conn, :edit, @video) %></span> |
