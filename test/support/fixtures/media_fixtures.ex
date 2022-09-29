@@ -19,4 +19,18 @@ defmodule Rumbl.MediaFixtures do
 
     video
   end
+
+  @doc """
+  Generate a category.
+  """
+  def category_fixture(attrs \\ %{}) do
+    {:ok, category} =
+      attrs
+      |> Enum.into(%{
+        name: "some name"
+      })
+      |> Rumbl.Media.create_category()
+
+    category
+  end
 end
