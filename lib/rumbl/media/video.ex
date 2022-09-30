@@ -20,7 +20,7 @@ defmodule Rumbl.Media.Video do
     video
     |> cast(attrs, [:url, :title, :description])
     |> validate_required([:url, :title, :description])
-    
+
   end
 
 end
