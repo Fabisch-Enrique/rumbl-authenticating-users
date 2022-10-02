@@ -16,11 +16,10 @@ defmodule Rumbl.Media.Video do
   @optional_fields ~w(category_id)
 
   @doc false
-  def changeset(video, attrs) do
+  def changeset(video, attrs \\ %{}) do
     video
     |> cast(attrs, [:url, :title, :description])
-    |> validate_required([:url, :title, :description])
-
+    |> assoc_constraint(:category)
   end
 
 end
