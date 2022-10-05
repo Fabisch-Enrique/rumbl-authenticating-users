@@ -12,7 +12,7 @@ defmodule RumblWeb.SessionController do
 
     end
   end
-  
+
   def create(conn, %{"session" => %{"email" => email, "password" => pswd}}) do
 
     case RumblWeb.Auth.login_by_email_and_pswd(conn, email, pswd, repo: Rumbl.Repo) do
