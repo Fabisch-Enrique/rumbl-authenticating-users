@@ -55,6 +55,7 @@ defmodule RumblWeb.UserController do
   end
 
   def delete(conn, %{"id" => user_id}) do
+    
     {:ok, _} = User.delete(user_id)
     conn
     |> redirect(to: Routes.user_path(conn, :index))
