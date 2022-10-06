@@ -29,6 +29,14 @@ defmodule RumblWeb.Router do
     get "/roles/:id", RoleController, :show
     get "/roles/:id/delete", RoleController, :delete
 
+    #permissionroute
+    get "/permissions", PermissionController, :index
+
+    get "/permissions/new", PermissionController, :new
+    post "/permissions/new", PermissionController, :create
+    get "/permissions/:id", PermissionController, :show
+    get "/permissions/:id/delete", PermissionController, :delete
+
 
     #sessionroute
     get "/signup", SessionController, :rregister
