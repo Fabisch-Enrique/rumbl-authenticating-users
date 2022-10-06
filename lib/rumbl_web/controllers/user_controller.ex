@@ -3,7 +3,7 @@ defmodule RumblWeb.UserController do
   use RumblWeb, :controller
   plug :authenticate_user when action in [:index, :show]
 
-  alias Rumbl.User
+  alias Rumbl.Accounts.User
 
   def index(conn, _params) do
 
@@ -22,11 +22,9 @@ defmodule RumblWeb.UserController do
   end
 
   def new(conn, _params) do
-    changeset = User.changeset(%Rumbl.User{}, %{})
+    changeset = User.changeset(%User{}, %{})
     render(conn, "form.html", changeset: changeset)
   end
-
-
 
   def create(conn, %{"user" => user_params}) do
     case User.create(user_params) do
@@ -37,7 +35,6 @@ defmodule RumblWeb.UserController do
 
       {:error, changeset} ->
         render(conn, "form.html", changeset: changeset)
-
     end
   end
 
@@ -55,7 +52,7 @@ defmodule RumblWeb.UserController do
   end
 
   def delete(conn, %{"id" => user_id}) do
-    
+
     {:ok, _} = User.delete(user_id)
     conn
     |> redirect(to: Routes.user_path(conn, :index))

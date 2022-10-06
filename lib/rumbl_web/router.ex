@@ -18,13 +18,26 @@ defmodule RumblWeb.Router do
   scope "/", RumblWeb do
     pipe_through :browser
 
+
     get "/", PageController, :index
 
+    #rolesroute
+    get "/roles", RoleController, :index
+
+    get "/roles/new", RoleController, :new
+    post "/roles/new", RoleController, :create
+    get "/roles/:id", RoleController, :show
+    get "/roles/:id/delete", RoleController, :delete
+
+
+    #sessionroute
     get "/signup", SessionController, :rregister
     post "/signup", SessionController, :register
     resources "/sessions", SessionController, only: [:new, :create, :delete]
 
+    #userroute
     resources "/users", UserController, only: [:index, :show, :new, :create, :delete]
+
   end
 
   scope "/manage", RumblWeb do

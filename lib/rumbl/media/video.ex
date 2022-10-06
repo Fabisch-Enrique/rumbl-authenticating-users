@@ -6,14 +6,14 @@ defmodule Rumbl.Media.Video do
     field :description, :string
     field :title, :string
     field :url, :string
-    belongs_to :user, Rumbl.User
+    belongs_to :user, RumblAccounts.User
     belongs_to :category, Rumbl.Media.Category
 
     timestamps()
   end
 
-  @required_fields ~w(url title description)
-  @optional_fields ~w(category_id)
+  #@required_fields ~w(url title description)
+  #@optional_fields ~w(category_id)
 
   @doc false
   def changeset(video, attrs \\ %{}) do

@@ -2,7 +2,7 @@ defmodule RumblWeb.SessionController do
 
   use RumblWeb, :controller
 
-  alias Rumbl.User
+  alias Rumbl.Accounts.User
 
   def new(conn, _) do
     if conn.assigns.current_user do
@@ -29,7 +29,7 @@ defmodule RumblWeb.SessionController do
   end
 
    def rregister(conn, _params) do
-    changeset = User.changeset(%Rumbl.User{}, %{})
+    changeset = User.changeset(%User{}, %{})
     render(conn, "register.html", changeset: changeset)
   end
 

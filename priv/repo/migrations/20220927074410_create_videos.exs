@@ -12,6 +12,6 @@ defmodule Rumbl.Repo.Migrations.CreateVideos do
     end
 
     create index(:videos, [:user_id])
-    
   end
+  
 end

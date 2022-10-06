@@ -1,4 +1,4 @@
-defmodule Rumbl.User do
+defmodule Rumbl.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -11,7 +11,9 @@ defmodule Rumbl.User do
     field :email, :string
     field :password, :string, virtual: true
     field :password_hash, :string
+    has_many :user_roles, Rumbl.CRoles.UserRole
     has_many :videos, Rumbl.Media.Video
+    many_to_many(:roles, Rumbl.Accounts.User, join_through: "user_role", on_replace: :delete)
 
     timestamps()
 
@@ -34,17 +36,18 @@ defmodule Rumbl.User do
         |> cast(params, [:password])
         |> validate_length(:password, min: 8, max: 100)
         |> put_pass_hash()
-    end
+  end
 
-    defp put_pass_hash(changeset) do
+  defp put_pass_hash(changeset) do
         case changeset do
             %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
                 put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(pass))
             _ ->
                 changeset
         end
-    end
+  end
 
+  #users actions
   def register(attrs) do
     __MODULE__.registration_changeset(%__MODULE__{}, attrs)
       |> Repo.insert()

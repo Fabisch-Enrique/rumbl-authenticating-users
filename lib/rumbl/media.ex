@@ -65,7 +65,7 @@ defmodule Rumbl.Media do
 
       iex> update_video(video, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
-
+  def get_video!(id), do: Repo.get!(Video, id)
   """
   def update_video(%Video{} = video, attrs) do
     video
