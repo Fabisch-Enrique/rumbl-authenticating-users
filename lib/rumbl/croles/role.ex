@@ -13,6 +13,10 @@ defmodule Rumbl.CRoles.Role do
     roles
     |> cast(attrs, [:name])
     |> validate_required(:name)
+    |> unique_constraint(:name)
+    |> cast_assoc(:role_permissions)
+
+
 
   end
 

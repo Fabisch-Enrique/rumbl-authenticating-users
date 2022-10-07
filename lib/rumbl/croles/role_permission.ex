@@ -14,7 +14,6 @@ defmodule Rumbl.CRoles.RolePermission do
   def changeset(role_permission, attrs \\ %{}) do
     role_permission
     |> cast(attrs, [:role_id, :permission_id])
-    |> validate_required([:role_id, :permission_id])
 
   end
 
