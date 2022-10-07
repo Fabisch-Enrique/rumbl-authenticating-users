@@ -12,12 +12,21 @@ defmodule RumblWeb.RoleController do
 
   def new(conn, _params) do
     changeset = Role.changeset(%Role{}, %{})
-    render(conn, "form.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset)
   end
 
   def show(conn, %{"id" => role_id}) do
     role = CRoles.get_role(role_id)
     render(conn, "show.html", role: role)
+  end
+
+  def edit(conn, %{"id" => role_id}) do
+    role = CRoles.get_role(role_id)
+    changeset =
+      role
+      |> Role.changeset(Map.take(role, [:name]))
+
+    render(conn, "edit.html", role: role, changeset: changeset)
   end
 
   def create(conn, %{"role" => role_params}) do
@@ -46,8 +55,8 @@ defmodule RumblWeb.RoleController do
   end
 
   def delete(conn, %{"id" => role_id}) do
-
-    {:ok, _} = CRoles.delete_role(role_id)
+    role = CRoles.get_role(role_id)
+    {:ok, _} = CRoles.delete_role(role)
     conn
     |> redirect(to: Routes.role_path(conn, :index))
   end

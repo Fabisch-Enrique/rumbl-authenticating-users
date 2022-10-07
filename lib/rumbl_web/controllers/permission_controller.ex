@@ -5,7 +5,7 @@ defmodule RumblWeb.PermissionController do
   alias Rumbl.CRoles
   alias Rumbl.CRoles.Permission
 
-
+  
   def index(conn, _params) do
     permission = CRoles.list_all_permissions
     render(conn, "index.html", permission: permission)
@@ -46,8 +46,8 @@ defmodule RumblWeb.PermissionController do
   end
 
   def delete(conn, %{"id" => permission_id}) do
-
-    {:ok, _} = CRoles.delete_permission(permission_id)
+    permission = CRoles.get_permission(permission_id)
+    {:ok, _} = CRoles.delete_permission(permission)
     conn
     |> redirect(to: Routes.permission_path(conn, :index))
   end
