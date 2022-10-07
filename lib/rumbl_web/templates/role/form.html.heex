@@ -10,6 +10,8 @@
   <%= text_input f, :name %>
   <%= error_tag f, :name %>
 
+  <%= multiple_select(f, :permissions, @permissions, selected: @selected_permissions) %>
+
   <div>
     <%= submit "Create Role" %>
   </div>

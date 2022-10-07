@@ -14,7 +14,7 @@ defmodule Rumbl.CRoles do
   end
 
   def get_role(id) do
-    Repo.get(Role, id)
+    Repo.get(Role, id) |> Repo.preload(:role_permissions)
   end
 
   def create_role(attrs \\ %{}) do

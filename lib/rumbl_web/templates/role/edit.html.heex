@@ -1,5 +1,5 @@
 <h1>Edit Role</h1>
 
-<%= render "form.html", changeset: @changeset, action: Routes.role_path(@conn, :update, @role) %>
+<%= render "form.html", changeset: @changeset, action: Routes.role_path(@conn, :update, @role),  permissions: @permissions, selected_permissions: @selected_permissions %>
 
 <span><%= link "Back", to: Routes.role_path(@conn, :index) %></span>

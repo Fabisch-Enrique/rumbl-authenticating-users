@@ -1,10 +1,17 @@
 alias Rumbl.Repo
+alias Rumbl.CRoles.Permission
 alias Rumbl.Media.Category
 
 for category <- ~w(Action Drama Romance Comedy Sci Fi) do
   Repo.get_by!(Category, name: category) ||
   Repo.insert!(%Category{name: category})
 end
+
+for permission <- ~w(ManageUser ViewUser ViewVideos  CreateVideos EditVideos DeleteVideos) do
+  Repo.get_by!(Permission, name: permission) ||
+  Repo.insert!(%Permission,{name: permission})
+end
+
 
 # Script for populating the database. You can run it as:
 #

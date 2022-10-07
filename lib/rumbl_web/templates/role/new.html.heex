@@ -1,5 +1,5 @@
 <h1>Create New Role</h1>
 
-<%= render "form.html", changeset: @changeset, action: Routes.role_path(@conn, :create) %>
+<%= render "form.html", changeset: @changeset, action: Routes.role_path(@conn, :create), permissions: @permissions, selected_permissions: @selected_permissions %>
 
 <span><%= link "Back", to: Routes.role_path(@conn, :index) %></span>
