@@ -5,7 +5,7 @@ defmodule Rumbl.CRoles.Role do
 
   schema "roles" do
     field :name, :string
-
+    has_many(:role_permissions, Rumbl.CRoles.RolePermission, on_replace: :delete)
     timestamps()
   end
 
