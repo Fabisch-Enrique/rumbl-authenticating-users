@@ -41,9 +41,10 @@ defmodule RumblWeb.RoleController do
     end
   end
 
-  def update(conn, %{"role" => role_id}) do
+  def update(conn, %{"id" => role_id, "role" => role_params}) do
+    role = CRoles.get_role(role_id)
 
-    case CRoles.update_permission(role_id) do
+    case CRoles.update_role(role, role_params) do
       {:ok, _role} ->
         conn
         |> redirect(to: Routes.role_path(conn, :index))

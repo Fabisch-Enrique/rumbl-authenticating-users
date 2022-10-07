@@ -1,0 +1,15 @@
+<h1>Show Permission</h1>
+
+<ul>
+  <li>
+    <strong>name:</strong>
+    <%= @permission.name %>
+  </li>
+  <li>
+    <strong>key:</strong>
+    <%= @permission.key %>
+  </li>
+</ul>
+
+<span><%= link "Edit", to: Routes.permission_path(@conn, :edit, @permission) %></span> |
+<span><%= link "Back", to: Routes.permission_path(@conn, :index) %></span>

@@ -36,7 +36,9 @@ defmodule RumblWeb.Router do
 
     get "/permissions/new", PermissionController, :new
     post "/permissions/new", PermissionController, :create
+    get "/permissions/:id/edit", PermissionController, :edit
     get "/permissions/:id", PermissionController, :show
+    put "/permissions/:id/edit", PermissionController, :update
     delete "/permissions/:id/delete", PermissionController, :delete
 
 

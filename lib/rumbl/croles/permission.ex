@@ -10,7 +10,7 @@ defmodule Rumbl.CRoles.Permission do
     timestamps()
   end
 
-  def changeset(permission, attrs) do
+  def changeset(permission, attrs \\ %{}) do
     permission
     |> cast(attrs, [:name, :key])
     |> validate_required(:name)

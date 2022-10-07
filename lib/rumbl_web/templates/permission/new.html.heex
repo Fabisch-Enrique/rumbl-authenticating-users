@@ -1,0 +1,5 @@
+<h1>Create New Permission</h1>
+
+<%= render "form.html", changeset: @changeset, action: Routes.permission_path(@conn, :create) %>
+
+<span><%= link "Back", to: Routes.permission_path(@conn, :index) %></span>
